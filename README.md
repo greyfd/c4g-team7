@@ -1,0 +1,1 @@
+To use create a .env file with variable OPENROUTER_API_KEY
