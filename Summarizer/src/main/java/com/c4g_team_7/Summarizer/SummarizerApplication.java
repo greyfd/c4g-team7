@@ -15,6 +15,6 @@ public class SummarizerApplication {
 
     @GetMapping("/")
     String home() {
-        return "Hi";
+        return "Hello, this is Ammar.";
     }
 }
