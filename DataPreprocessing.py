@@ -42,7 +42,7 @@ for page in doc:
 
 #print(abstract)
 
-text = text.strip()
+#text = text.strip()
 text = text.lower() #do we need tihs?
 
 pattern = r'[a-zA-Z0-9]+@gmail\.com|[a-zA-Z0-9]+@yahoo.com|[a-zA-Z0-9]+@hotmail.com|email[:]+|id:[" "0-9]+|@[a-zA-Z0-9]+'

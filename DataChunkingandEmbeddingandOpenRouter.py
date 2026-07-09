@@ -6,6 +6,13 @@ from sentence_transformers import SentenceTransformer
 import numpy
 from openai import OpenAI
 import sys
+from dotenv import load_dotenv
+import os
+import supabase
+from supabase import create_client, Client
+
+load_dotenv()
+api_key = os.getenv("OPENROUTER_API_KEY")
 
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -108,26 +115,26 @@ for i in indices:
     print(pieces[i])
     print(scores[i])
 
-client = OpenAI(
-  base_url="https://openrouter.ai/api/v1",
-  api_key="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",
-)
+#client = OpenAI(
+#  base_url="https://openrouter.ai/api/v1",
+#  api_key=api_key,
+#)
 
 # First API call with reasoning
-response = client.chat.completions.create(
-  model="google/gemma-4-31b-it:free",
-  messages=[
-          {
-            "role": "system",
-            "content": final_text + "User Question about the text: " + user_query
-          }
-        ],
-  extra_body={"reasoning": {"enabled": True}}
-)
+#response = client.chat.completions.create(
+  #model="google/gemma-4-31b-it:free",
+  #messages=[
+      #    {
+     #       "role": "system",
+    #        "content": final_text + "User Question about the text: " + user_query
+   #       }
+  #      ],
+ # extra_body={"reasoning": {"enabled": True}}
+#)
 
 # Extract the assistant message with reasoning_details
-response = response.choices[0].message
-print(response.content)
+#response = response.choices[0].message
+#print(response.content)
 
 # Preserve the assistant message with reasoning_details
 #messages = [
@@ -145,4 +152,69 @@ print(response.content)
  # model="openai/gpt-oss-120b:free",
 #  messages=messages,
 #  extra_body={"reasoning": {"enabled": True}}
+#)
+from openai import OpenAI
+
+client = OpenAI(
+  base_url="https://openrouter.ai/api/v1",
+  api_key=api_key,
+)
+
+# First API call with reasoning
+response = client.chat.completions.create(
+  model="openrouter/free",
+  messages=[
+          {
+            "role": "system",
+            "content": final_text + "User Question about the text: " + user_query
+          }
+        ],
+  extra_body={"reasoning": {"enabled": True}}
+)
+
+# Extract the assistant message with reasoning_details
+response = response.choices[0].message
+print(response.content)
+
+url = "https://yrybsyvpiorvidpouurv.supabase.co/rest/v1/"
+key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlyeWJzeXZwaW9ydmlkcG91dXJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwMzA1NDAsImV4cCI6MjA5ODYwNjU0MH0.DmmK05xmbAdCy85q9ikKMls062YGMt-jdMt6u_Tc5iQ"
+
+supabase: Client = create_client(
+    url,
+    key
+)
+
+resp = (
+    supabase
+    .table("profiles")
+    .insert({
+        "username": "BhavyaTestCase"
+    })
+    .execute()
+)
+#client = create_client(url, key)
+
+#resp = client.table("profiles").insert({
+   # "username": "BhavyaTestCase"
+#}).execute()
+
+print(resp)
+
+
+# Preserve the assistant message with reasoning_details
+#messages = [
+ # {"role": "user", "content": "How many r's are in the word 'strawberry'?"},
+  #{
+   # "role": "assistant",
+    #"content": response.content,
+    #"reasoning_details": response.reasoning_details  # Pass back unmodified
+  #},
+  #{"role": "user", "content": "Are you sure? Think carefully."}
+#]
+
+# Second API call - model continues reasoning from where it left off
+#response2 = client.chat.completions.create(
+ # model="openrouter/free",
+  #messages=messages,
+  #extra_body={"reasoning": {"enabled": True}}
 #)
