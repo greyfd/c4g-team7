@@ -15,7 +15,7 @@ import supabase
 from flask import render_template
 import json
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=".")
 #app2 = Flask(__name__)
 CORS(app)
 #CORS(app2)
