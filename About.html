@@ -21,13 +21,15 @@
                 }
 
                 .heading {
-                    transform: translate(30px, 0px);
+                    transform: translate(75px, 0px);
                     padding-left: 70px;
                     word-spacing: 10%;
                     text-transform: auto;
                     font-size: 40px;
                     color: white;
                     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                    transform: translateY(75px);
+                    margin-left: 245px;
                 }
                 
                 .box {
@@ -37,6 +39,8 @@
                     height: 200px;
                     transform: translateX(80px);
                     display: flex;
+                    transform: translateY(80px);
+                    margin-left: 70px;
                 }
 
                 .img {
@@ -91,6 +95,41 @@
                 .info {
                     padding-left: 20px;
                 }
+
+                .navbar {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    padding: 20px 60px;
+
+                    background: rgba(255,255,255,0.08);
+                    backdrop-filter: blur(15px);
+
+                    border-bottom: 1px solid rgba(255,255,255,.2);
+
+                    transform: translate(1px, -1050px);
+                }
+
+                .nav-links {
+                    display: flex;
+                    gap: 120px;
+                }
+
+                .nav-links a {
+                    text-decoration: none;
+                    color: white;
+                    font-size: 40px;
+                    font-family: 'Segoe UI', sans-serif;
+                    transition: 0.25s;
+                    transform: translate(70px);
+                    word-spacing: 30%;
+                }
+
+                .nav-links a:hover {
+                    color: rgb(70, 220, 255);
+                }
+
         </style>
         </head>
 
@@ -137,6 +176,15 @@
                 </div>
                 <p class="PI">About us information will go here</p>
             </div>
+            <nav class="navbar">
+                <div class="nav-links">
+                    <a href="test.html">Home</a>
+                    <a href="features.html">Features</a>
+                    <a href="About.html">About</a>
+                    <a href="login.html">Login</a>
+                    <a href="Notes.html">Notes</a>
+                </div>
+            </nav>
         </body>
     </html>
 </html>

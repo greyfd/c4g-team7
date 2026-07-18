@@ -13,6 +13,39 @@
     box-sizing:border-box;
 }
 
+.navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 20px 60px;
+
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(15px);
+
+        border-bottom: 1px solid rgba(255,255,255,.2);
+
+        transform: translate(1px, -920px);
+    }
+
+.nav-links {
+    display: flex;
+    gap: 120px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    font-family: 'Segoe UI', sans-serif;
+    transition: 0.25s;
+    transform: translate(70px);
+    word-spacing: 30%;
+}
+
+.nav-links a:hover {
+    color: rgb(70, 220, 255);
+}
 
 body{
 
@@ -57,6 +90,7 @@ body{
     font-weight:800;
 
     margin-top:40px;
+    transform: translateY(100px);
 
 }
 
@@ -79,6 +113,7 @@ body{
 
     gap:30px;
 
+    transform: translateY(140px);
 
 }
 
@@ -291,6 +326,7 @@ li{
 
     gap:15px;
 
+        transform: translateY(160px);
 
 }
 
@@ -644,6 +680,18 @@ src="SCRIPT copy.js">
     </button>
 
 </div>
+
+<nav class="navbar">
+
+    <div class="nav-links">
+        <a href="test.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="About.html">About</a>
+        <a href="login.html">Login</a>
+        <a href="Notes.html">Notes</a>
+    </div>
+</nav>
+
 
 
 

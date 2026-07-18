@@ -1364,7 +1364,7 @@ localStorage.clear();
 
 
 window.location.href =
-"login.html";
+"test.html";
 
 
 };
@@ -1728,3 +1728,22 @@ ${citations.join("\n")}
     );
 
 });
+
+window.Notes = async function Notes() {
+    window.location("Notes.html");
+}
+
+window.tabPlus = async function tabPlus () {
+    const content = document.getElementById("notes").value;
+    const title = document.getElementById("title").value;
+
+    const {data:{user}} = await supabase.auth.getUser();
+
+    const ins = await supabase.from("notes").insert({
+                user_id: user.id,
+                title: title,
+                content: content
+    });
+
+
+}

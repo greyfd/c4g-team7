@@ -66,10 +66,11 @@ def queries():
     page1 = doc.load_page(0)
 
     abstract = page1.search_for("abstract")
-    box1 = pymupdf.Rect(abstract[0].x0, abstract[0].y0, 612, 792)
-    page1 = page1.get_text("text", clip=box1)
-
-    text += page1
+    if abstract:
+        box1 = pymupdf.Rect(abstract[0].x0, abstract[0].y0, 612, 792)
+        page1 = page1.get_text("text", clip=box1)
+        text += page1
+        
     text_temp = text
     line = []
     chunks = []

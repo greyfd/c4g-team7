@@ -10,6 +10,7 @@
         font-size: 20px;
         font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, sans-serif;
         font-weight: 800;
+        transform: translateY(80px);
     }
 
     .title h1 {
@@ -22,7 +23,7 @@
     .signup-container {
         width: 350px;
         height: 360px;
-        transform: translate(0px, -130px);
+        transform: translate(40px, -130px);
         padding: 30px;
         background: rgba(255,255,255,0.12); 
         backdrop-filter: blur(15px);       
@@ -244,23 +245,23 @@
     }
 
     .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-    padding: 20px 60px;
+        padding: 20px 60px;
 
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(15px);
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(15px);
 
-    border-bottom: 1px solid rgba(255,255,255,.2);
+        border-bottom: 1px solid rgba(255,255,255,.2);
 
-    transform: translate(1px, -20px);
-}
+        transform: translate(1px, -180px);
+    }
 
 .nav-links {
     display: flex;
-    gap: 190px;
+    gap: 120px;
 }
 
 .nav-links a {
@@ -294,6 +295,73 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+
+    .footerTitle {
+        display:flex;
+        transform: translate(0px, -60px);
+        width: 1350px;
+        height: 310px;
+        background-color: white;
+        color:black;
+        font-size: 35px;
+        font-family:'Inter', sans-serif;
+        font-weight: 700;
+        padding-left:90px;
+    }
+
+    .footerSub {
+        transform: translate(90px, -410px);
+        font-size: 28px;
+        font-family:'Inter', sans-serif;
+    }
+
+    .footerP {
+        transform: translate(90px, -457px);
+        font-weight: 530;
+        font-size: 25px;
+        font-family: "Inter", sans-serif;
+    }
+
+    .footerContent {
+        transform: translate(90px, -473px);
+    }
+
+    .footerCont {
+        transform: translate(90px, -482px);
+    }
+
+    .footerR {
+        transform: translate(360px, -727px);
+        font-weight: 530;
+        font-size: 25px;
+        font-family: "Inter", sans-serif;
+    }
+
+    .footerCon {
+        transform: translate(365px, -745px);
+    }
+
+    .footerL {
+        transform: translate(610px, -827px);
+        font-weight: 530;
+        font-size: 25px;
+        font-family: "Inter", sans-serif;
+    }
+
+    .footerCo {
+        transform: translate(615px, -847px);
+    }
+
+    .foot {
+        transform: translate(60px, 120px);
+    }
+
+    img {
+        width: 420px;
+        height: 310px;
+        transform: translate(926px, -1040px);
+    }
+
 </style>
 
 <body>
@@ -303,13 +371,14 @@
 
     <nav class="navbar">
 
-    <div class="nav-links">
-        <a href="test.html">Home</a>
-        <a href="features.html">Features</a>
-        <a href="About.html">About</a>
-        <a href="login.html">Login</a>
-    </div>
-</nav>
+        <div class="nav-links">
+            <a href="test.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="About.html">About</a>
+            <a href="login.html">Login</a>
+            <a href="Notes.html">Notes</a>
+        </div>
+    </nav>
 
     <div class="upload-container">
         <label for="pdfInput" class="custom-file-upload">Submit Your PDF File Here:</label>
@@ -336,6 +405,29 @@
         <input type="password" id="password" placeholder="Enter your password: ">
         <button id="signUp" onclick="Authentication()">Sign Up</button>
     </div>
+
+    <div class="footer">
+        <p class="footerTitle">AI Research</p>
+        <br>
+        <p class="footerSub">Analyze papers. Discover insights. Learn smarter.</p>
+        <br>
+        <p class="footerP">Product</p>
+        <p class="footerContent">• AI Summaries</p>
+        <p class="footerContent">• Quizzes</p>
+        <p class="footerContent">• Diagrams</p>
+        <p class="footerCont">• Q&A</p>
+        <p class="footerCont">• Downloads</p>
+        <p class="footerCont">• Study Guide Generation</p>
+        <p class="footerR">Resources</p>
+        <p class="footerCon">• About Us</p>
+        <p class="footerL">Legal</p>
+        <div class="footerCo">
+        <a href="PrivacyPolicy.html">• Privacy Policy</a>
+        <p class="foot">© 2026 AI Research Assistant</p>
+        </div>
+    </div>
+
+    <img src="LOGOS.png">
 
 </body>
 <script type="module" src="SCRIPT copy.js"></script>
