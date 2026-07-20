@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>AI Research Paper Summarizer</title>
+</head>
+<style>
+    .title {
+        font-size: 20px;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, sans-serif;
+        font-weight: 800;
+    }
+
+    .title h1 {
+        font-size: 80px;
+        color:rgba(240, 255, 255, 0.966);
+        padding-left: 130px;
+        padding-top: -20px;
+    }
+
+    .upload-container {
+        width: 1200px;
+        height: 340px;
+        transform: translate(30px, 30px);
+        padding: 30px;
+        padding-top: 50px;
+        padding-right: 50px;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.25);
+        backdrop-filter: blur(15px);
+        border-radius: 25px;
+    }
+
+    .custom-file-upload {
+        color: white;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .upload-box {
+        border-style: dashed;
+        border-radius: 25px;
+        border-color:rgb(41, 223, 223);
+        height: 200px;
+    }
+
+    .upload-box input{
+        transform: translate(493px, -50px);
+        color: white;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .state {
+        transform: translate(509px, -10px);
+        color: white;
+        font-size: 40px;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .extra {
+        transform: translate(360px, -80px);
+        color: white;
+        font-size: 20px;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    #userQuery {
+        transform: translate(2px, 30px);
+        border-radius: 20px;
+        width:540px;
+        height: 50px;
+        font-size: 25px;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .button {
+        transform: translate(10px, 30px);
+        border-radius: 20px;
+        width: 100px;
+        height: 55px;
+        background-color: rgb(50, 76, 219);
+        color: white;
+        font-size: 20px;
+    }
+
+    .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 60px;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid rgba(255,255,255,.2);
+
+    transform: translate(1px, -20px);
+}
+
+.nav-links {
+    display: flex;
+    gap: 120px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    font-family: 'Segoe UI', sans-serif;
+    transition: 0.25s;
+    transform: translate(70px);
+    word-spacing: 30%;
+}
+
+.nav-links a:hover {
+    color: rgb(70, 220, 255);
+}
+
+    body{
+        margin: 0;
+
+        background:
+            radial-gradient(circle at 15% 15%,
+                rgb(6, 154, 180) 0%, transparent
+                30%),
+
+            radial-gradient(circle at 85% 80%,
+                rgba(6,182,212,.45) 0%,
+                transparent 25%),
+
+            #0f172a;
+
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden;
+    }
+</style>
+
+<body>
+    <div class="title">
+        <h1>AI Research Paper Summarizer</h1>
+    </div>
+
+    <nav class="navbar">
+
+    <div class="nav-links">
+        <a href="loggedin.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="About.html">About</a>
+        <a href="profile.html">Profile</a>
+        <a href="Notes.html">Notes</a>
+    </div>
+</nav>
+
+    <div class="upload-container">
+        <label for="pdfInput" class="custom-file-upload">Submit Your PDF File Here:</label>
+        <br>
+        <br>
+        <div class="upload-box">
+            <p class="state">Upload PDF</p>
+            <br>
+            <p class="extra">Let AI extract, analyze, and answer qustions about your paper</p>
+            <input type="file" id="pdfInput" accept="application/pdf">
+        </div>
+
+        <div class="query-container">
+            <input type="text" id="userQuery" placeholder="  Enter your question here">
+            <button class="button" onclick="Query()">Enter</button>
+        </div>
+    </div>
+
+</body>
+<script type="module" src="SCRIPT copy.js"></script>
+</html>

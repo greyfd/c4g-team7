@@ -1,0 +1,275 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Login</title>
+            <style>
+                body{
+                    min-height: 100vh;
+                    background:
+                        radial-gradient(circle at 15% 15%,
+                            rgb(6, 154, 180) 0%, transparent
+                            30%),
+
+                        radial-gradient(circle at 85% 80%,
+                            rgba(6,182,212,.45) 0%,
+                            transparent 25%),
+
+                        #0f172a;
+
+                    background-repeat: no-repeat;
+                }
+
+                .heading {
+                    margin-left: 480px;
+                    margin-bottom: 30px;
+                    
+                    
+                    padding-left: 70px;
+                    word-spacing: 10%;
+                    text-transform: auto;
+                    font-size: 80px;
+                    color: white;
+                    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                }
+
+                .side {
+                    margin-left: 220px;
+                    color: white;
+                    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    font-size: 35px;
+                }
+
+                .side2 {
+                    border: 2px solid white;
+                    width: 320px;
+                    border-radius: 25px;
+                    box-shadow: 10px 10px 13px rgb(2, 61, 109);
+                    margin-left: 290px;
+                    color: white;
+                    font-size: 35px;
+                    border-radius: 25px;
+                    background-color: rgba(11, 9, 122, 0.15);
+                    backdrop-filter: blur(15px);
+                }
+
+                .name {
+                    margin-left: 100px;
+                    margin-top: 20px;
+                    color: white;
+                    font-size: 50px;
+                    text-decoration: underline;
+                    
+                }
+            </style>
+    </head>
+
+    <body>
+        <h1 class="heading">Login</h1>
+        <p class="name">AI Research Paper Assistant</p>
+        <p class="side">Research Smarter</p>
+
+        <p class="side">Upload papers.</p>
+
+        <p class="side">Ask questions.</p>
+
+        <p class="side">Get insights.</p>
+
+        
+        <div class="side2">
+            <p>- AI Summaries</p>
+
+
+            <p>- Paper Q&A</p>
+
+
+            <p>- Citation Extraction</p>
+        </div>
+    </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+    <title>Login</title>
+
+        <style>
+
+            body{
+                min-height:100vh;
+                background:
+                    radial-gradient(circle at 15% 15%,
+                        rgb(6,154,180) 0%,
+                        transparent 30%),
+                    radial-gradient(circle at 85% 80%,
+                        rgba(6,182,212,.45) 0%,
+                        transparent 25%),
+                    #0f172a;
+
+                font-family:'Segoe UI', sans-serif;
+                color:white;
+            }
+
+            .main{
+                height:100vh;
+                display:flex;
+                justify-content:center;
+            }
+
+            .left{
+                width:550px;
+            }
+
+            .heading{
+                font-size:75px;
+                font-weight:900;
+                margin:-10;
+                background-color:rgb(80,220,255);
+                background-clip:text;
+            }
+
+            .name{
+                font-size:35px;
+                font-weight:bold;
+                margin-top:20px;
+            }
+
+            .state{
+                font-size:30px;
+                color:#dbeafe;
+                margin-top:40px;
+            }
+
+            .features{
+                margin-top:40px;
+                display:flex;
+                flex-direction:column;
+                gap:20px;
+
+            }
+
+            .feature{
+                width:450px;
+                padding:18px 25px;
+                border-radius:20px;
+                background:rgba(255,255,255,.12);
+                backdrop-filter:blur(15px);
+                border: 1px solid rgba(255,255,255,.25);
+                font-size:22px;
+                transition:.3s;
+            }
+
+            .feature:hover{
+                transform:translateX(15px);
+                background:rgba(255, 255, 255, 0);
+            }
+
+            .login{
+                width:430px;
+                padding:45px;
+                border-radius:30px;
+                background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.18),
+                    rgba(255,255,255,.05)
+                );
+                border: 1px solid rgba(255,255,255,.25);
+                box-shadow: 0 25px 60px rgba(0,0,0,.45);
+            }
+
+            .login h2{
+                text-align:center;
+                font-size:40px;
+                margin-top:0;
+            }
+
+            input{
+                width:100%;
+                height:60px;
+                margin-top:20px;
+                border:none;
+                border-radius:30px;
+                padding-left:25px;
+                font-size:18px;
+                outline:none;
+                background:
+                rgba(255,255,255,.2);
+                color:white;
+            }
+
+            input::placeholder{
+                color:white;
+            }
+
+            button{
+                width:100%;
+                height:60px;
+                margin-top:30px;
+                border-radius:30px;
+                color:white;
+                font-size:22px;
+                font-weight:bold;
+                background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #06b6d4
+                );
+            }
+
+            button:hover{
+                transform:scale(1.05);
+                box-shadow: 0 0 30px rgba(6,182,212,.8);
+            }
+
+        </style>
+        </head>
+
+        <body>
+            <div class="main">
+
+                <div class="left">
+
+                    <h1 class="heading">
+                        AI Research
+                        <br>
+                        Assistant
+                    </h1>
+                    <p class="name">Research Smarter.</p>
+                    <p class="state">Enhance your learnning with our AI Research Paper Assistant</p>
+
+                    <div class="features">
+
+                        <div class="feature">
+                            AI Summaries
+                        </div>
+
+                        <div class="feature">
+                            Ask Questions About Your Paper
+                        </div>
+
+                        <div class="feature">
+                            Automatic Citation Extraction
+                        </div>
+
+                        <div class="feature">
+                            Discover Key Insights
+                        </div>
+
+                </div>
+
+            </div>
+
+                <div class="login">
+                    <h2>Login</h2>
+                    <input type="email" id = "email" placeholder="Enter your email">
+
+                    <input type="password" id = "password" placeholder="Enter your password">
+                    <button onclick="Login()">Login</button>i 
+                </div>
+            </div>
+            <script type="module" src="SCRIPT copy.js"></script>
+        </body>
+    
+    </html>

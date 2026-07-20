@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<title>AI Research Assistant</title>
+
+
+<style>
+
+
+*{
+    box-sizing:border-box;
+}
+
+.navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 20px 60px;
+
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(15px);
+
+        border-bottom: 1px solid rgba(255,255,255,.2);
+
+        transform: translate(1px, -920px);
+    }
+
+.nav-links {
+    display: flex;
+    gap: 120px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    font-family: 'Segoe UI', sans-serif;
+    transition: 0.25s;
+    transform: translate(70px);
+    word-spacing: 30%;
+}
+
+.nav-links a:hover {
+    color: rgb(70, 220, 255);
+}
+
+body{
+
+    margin:0;
+
+    min-height:100vh;
+
+
+    background:
+
+    radial-gradient(
+        circle at 15% 15%,
+        rgb(6,154,180),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 85% 80%,
+        rgba(6,182,212,.45),
+        transparent 25%
+    ),
+
+    #0f172a;
+
+
+    font-family:'Segoe UI',sans-serif;
+
+    color:white;
+
+}
+
+
+
+/* Header */
+
+.header{
+
+    text-align:center;
+
+    font-size:55px;
+
+    font-weight:800;
+
+    margin-top:40px;
+    transform: translateY(100px);
+
+}
+
+
+
+
+
+/* Main layout */
+
+
+.container{
+
+
+    width:90%;
+
+    margin:40px auto;
+
+
+    display:flex;
+
+    gap:30px;
+
+    transform: translateY(140px);
+
+}
+
+
+
+
+
+/* Glass panels */
+
+
+.panel{
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(255,255,255,.18),
+
+        rgba(255,255,255,.05)
+
+    );
+
+
+    backdrop-filter:blur(18px);
+
+
+    border-radius:30px;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.25);
+
+
+
+    box-shadow:
+
+    0 25px 50px rgba(0,0,0,.35);
+
+
+
+}
+
+
+
+
+
+/* AI Answer */
+
+
+.response{
+
+
+    width:70%;
+
+
+    height:600px;
+
+
+    padding:35px;
+
+
+    overflow-y:auto;
+
+
+}
+
+
+
+.title{
+
+
+    font-size:32px;
+
+
+    font-weight:800;
+
+
+    border-bottom:
+
+    1px solid rgba(255,255,255,.3);
+
+
+    padding-bottom:15px;
+
+
+}
+
+
+
+#responseText{
+
+
+    margin-top:25px;
+
+
+    font-size:18px;
+
+
+    line-height:1.7;
+
+
+    color:#f1f5f9;
+
+
+}
+
+
+
+
+
+/* Sidebar */
+
+
+.sidebar{
+
+
+    width:30%;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:25px;
+
+
+}
+
+
+
+
+.citations{
+
+
+    height:300px;
+
+
+    padding:25px;
+
+
+    overflow-y:auto;
+
+
+}
+
+
+
+.document{
+
+
+    height:250px;
+
+
+    padding:25px;
+
+
+}
+
+
+
+
+
+h2{
+
+    margin-top:0;
+
+}
+
+
+
+
+
+li{
+
+
+    margin-bottom:15px;
+
+
+    color:#dbeafe;
+
+
+}
+
+
+
+
+
+
+
+/* Chat */
+
+
+.chat{
+
+
+    width:90%;
+
+
+    margin:30px auto;
+
+
+    display:flex;
+
+
+    gap:15px;
+
+        transform: translateY(160px);
+
+}
+
+
+
+
+#question{
+
+
+    flex:1;
+
+
+    height:65px;
+
+
+    border-radius:35px;
+
+
+    border:none;
+
+
+    padding-left:30px;
+
+
+    font-size:18px;
+
+
+}
+
+
+
+
+
+button{
+
+
+    width:130px;
+
+
+    border-radius:35px;
+
+
+    border:none;
+
+
+    cursor:pointer;
+
+
+    font-size:18px;
+
+
+    color:white;
+
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #2563eb,
+
+        #06b6d4
+
+    );
+
+
+}
+
+
+
+
+button:hover{
+
+
+    transform:scale(1.05);
+
+
+}
+
+
+
+
+.back{
+
+
+    position:absolute;
+
+    top:35px;
+
+    left:40px;
+
+
+}
+
+
+
+.back button{
+
+
+    width:120px;
+
+    height:50px;
+
+
+}
+
+
+#downloadBtn {
+
+    margin-top: -10px;
+    margin-left: 1150px;
+
+    padding: 14px 30px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #06b6d4,
+        #2563eb
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 8px 25px rgba(6,182,212,.35);
+
+}
+
+
+#downloadBtn:hover {
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 12px 35px rgba(6,182,212,.55);
+
+}
+
+
+#downloadBtn:active {
+
+    transform:scale(.97);
+
+}
+
+
+</style>
+
+
+</head>
+
+
+
+
+<body>
+
+
+
+
+<div class="back">
+
+
+<button onclick="BACK()">
+
+Back
+
+</button>
+
+
+</div>
+
+
+
+
+
+<h1 class="header">
+
+AI Research Assistant
+
+</h1>
+
+
+
+
+
+<div class="container">
+
+
+
+
+
+<div class="panel response">
+
+
+<div class="title">
+
+ AI Generated Response
+
+</div>
+
+
+
+
+<p id="responseText">
+
+Generating response...
+
+</p>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="sidebar">
+
+
+
+
+
+<div class="panel citations">
+
+
+<h2>
+
+ Citations
+
+</h2>
+
+
+<ul id="citations">
+
+
+</ul>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="panel document">
+
+
+<h2>
+
+ Document
+
+</h2>
+
+
+
+<p>
+
+Research Paper Analysis Complete
+
+</p>
+
+
+
+<p>
+
+AI retrieved relevant sections and generated an answer.
+
+</p>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="chat">
+
+
+<input
+
+id="question"
+
+placeholder="Ask a follow-up question about your paper..."
+
+>
+
+
+
+<button onclick="FollowUp()">
+
+Ask AI
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+<script 
+type="module"
+src="SCRIPT copy.js">
+</script>
+
+<div class="response-container">
+
+
+    <button id="downloadBtn">
+         Download Response
+    </button>
+
+</div>
+
+<nav class="navbar">
+
+    <div class="nav-links">
+        <a href="test.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="About.html">About</a>
+        <a href="login.html">Login</a>
+        <a href="Notes.html">Notes</a>
+    </div>
+</nav>
+
+
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Privacy Policy</title>
+    </head>
+    <style>
+        body{
+            margin:0;
+            min-height:100vh;
+
+            background:
+            radial-gradient(circle at 15% 15%,
+                rgb(6,154,180) 0%,
+                transparent 30%),
+
+            radial-gradient(circle at 85% 80%,
+                rgba(6,182,212,.45) 0%,
+                transparent 25%),
+
+            #0f172a;
+
+            background-repeat:no-repeat;
+            background-size:cover;
+        }
+
+        .login{
+                width:930px;
+                height: 500px;
+                padding:45px;
+                border-radius:30px;
+                background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.18),
+                    rgba(255,255,255,.05)
+                );
+                border: 1px solid rgba(255,255,255,.25);
+                box-shadow: 0 25px 60px rgba(0,0,0,.45);
+                transform: translate(160px, 160px);
+                font-size: 16px;
+                margin-top: 10px;
+                color: white;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+
+        .title {
+            font-size: 68px;
+            color: white;
+            transform: translate(440px, -580px);
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+
+    <body>
+        <div class="login">
+            1. Data Collection and Purpose 
+            <br>
+
+Our application collects only the information necessary to provide its core functionality. This includes user account information (email, hashed password, and user ID), uploaded research papers, chat history, and AI-generated responses. Account information enables authentication and allows users to save their papers and previous conversations. Uploaded PDFs are processed to generate summaries and answer questions, while chat history is stored so users can revisit past research sessions. Temporary vector embeddings are created during Retrieval-Augmented Generation (RAG) and are deleted after processing along with the raw text chunks. 
+
+<br>
+<br>
+2. Potential Misuse and Risks 
+<br>
+
+Several risks exist when using an AI research assistant. First, the AI may produce inaccurate summaries or hallucinate information, leading users to misunderstand a research paper. Second, users may upload confidential or unpublished research papers without realizing the privacy implications (sent to an LLM – we don’t interfere with data handling on LLM. Third, users may rely entirely on AI-generated summaries instead of reading the original paper, potentially missing important context, limitations, or nuanced findings. 
+<br>
+<br>
+3. Mitigations We Can Implement 
+<br>
+
+To reduce these risks, our system uses Retrieval-Augmented Generation (RAG), ensuring that responses are grounded in the uploaded paper rather than relying solely on the language model's internal knowledge. We also display citations and relevant text excerpts alongside AI responses so users can verify the source of the information. User passwords are securely hashed, uploaded papers are accessible only to authenticated users, and vector embeddings are cleared after processing to minimize unnecessary data retention. We also limit AI responses to information contained within the uploaded paper to reduce chances of hallucinations. 
+<br>
+<br>
+4. Accessibility, Fairness, and User Transparency 
+<br>
+
+Our goal is to make research papers more accessible to students regardless of their prior experience with academic writing by translating technical language into simpler explanations. However, the AI may not perform equally well across every research discipline or writing style. AI-generated summaries are intended as study aids rather than replacements for reading the original paper. 
+        </div>
+        <div class="title">
+            Privacy Policy
+        </div>
+    </body>
+</html>

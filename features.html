@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Features</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+
+body {
+
+    margin:0;
+    min-height:100vh;
+
+    background:
+        radial-gradient(circle at 15% 15%, rgb(6,154,180), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(6,182,212,.45), transparent 25%),
+        #0f172a;
+
+    font-family:'Segoe UI', sans-serif;
+    color:white;
+
+}
+
+
+
+/* Heading */
+
+.head {
+
+    font-size:80px;
+    text-align:center;
+    margin-top:50px;
+    margin-bottom:10px;
+    font-weight:900;
+
+    background:linear-gradient(
+        90deg,
+        white,
+        rgb(100,220,255)
+    );
+
+    background-clip:text;
+    color:transparent;
+
+    transform: translateY(60px);
+
+}
+
+
+
+.state {
+
+    text-align:center;
+    font-size:25px;
+    color:#dbeafe;
+
+    margin-bottom:60px;
+
+    transform: translateY(30px);
+
+}
+
+
+
+/* Back Button */
+
+.button {
+
+    position:absolute;
+    top:35px;
+    left:40px;
+
+}
+
+
+.button button {
+
+    width:130px;
+    height:55px;
+
+    border-radius:30px;
+    border:none;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #06b6d4
+    );
+
+
+    transition:.3s;
+
+}
+
+
+.button button:hover {
+
+    transform:scale(1.08);
+
+    box-shadow:
+    0 0 25px rgba(6,182,212,.8);
+
+}
+
+
+
+
+/* Card Container */
+
+
+.boxes1,
+.boxes2 {
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:40px;
+
+    margin-bottom:40px;
+
+}
+
+
+
+
+
+/* Cards */
+
+
+.box1,
+.box2 {
+
+    width:380px;
+    height:320px;
+
+
+    padding:30px;
+
+
+    border-radius:30px;
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.2),
+        rgba(255,255,255,.05)
+    );
+
+
+    backdrop-filter:blur(20px);
+
+
+    border:
+    1px solid rgba(255,255,255,.25);
+
+
+    box-shadow:
+
+    0 20px 40px rgba(0,0,0,.35);
+
+
+
+    transition:.35s;
+
+
+    position:relative;
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+.box1:hover,
+.box2:hover {
+
+
+    transform:
+    translateY(-15px);
+
+
+    box-shadow:
+
+    0 30px 60px rgba(0,0,0,.55);
+
+
+}
+
+
+
+
+/* Glow Effect */
+
+
+.box1::before,
+.box2::before {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:200px;
+    height:200px;
+
+
+    background:
+    rgba(0,220,255,.25);
+
+
+    border-radius:50%;
+
+
+    filter:blur(50px);
+
+
+    top:-80px;
+    right:-80px;
+
+
+}
+
+
+
+
+h2 {
+
+    text-align:center;
+
+    font-size:28px;
+
+    margin-top:0;
+
+}
+
+
+
+p {
+
+
+    color:#f1f5f9;
+
+
+    font-size:17px;
+
+
+    line-height:1.6;
+
+
+}
+
+.navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 20px 60px;
+
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(15px);
+
+        border-bottom: 1px solid rgba(255,255,255,.2);
+
+        transform: translate(1px, -980px);
+    }
+
+.nav-links {
+    display: flex;
+    gap: 120px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    font-family: 'Segoe UI', sans-serif;
+    transition: 0.25s;
+    transform: translate(70px);
+    word-spacing: 30%;
+}
+
+.nav-links a:hover {
+    color: rgb(70, 220, 255);
+}
+
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="button">
+
+<button onclick="BACK()">
+Back
+</button>
+
+</div>
+
+
+
+<h1 class="head">
+Features
+</h1>
+
+
+<p class="state">
+Explore everything our AI Research Assistant can do
+</p>
+
+
+
+
+<div class="boxes1">
+
+
+<div class="box1">
+
+<h2>
+ AI Summaries
+</h2>
+
+<p>
+Transform complex research papers into clear, concise summaries within seconds. Our AI analyzes lengthy academic documents, identifies important concepts, and restructures information into an easy-to-understand format.
+</p>
+
+</div>
+
+
+
+<div class="box1">
+
+<h2>
+ AI Q&A
+</h2>
+
+<p>
+Interact with your research papers like never before. Ask questions about methods, results, concepts, or conclusions and receive context-aware answers directly from your paper.
+</p>
+
+</div>
+
+
+
+<div class="box1">
+
+<h2>
+ Key Findings
+</h2>
+
+<p>
+Discover important insights hidden within research papers. Our AI extracts significant results, conclusions, and evidence to help you quickly understand the most valuable information.
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="boxes2">
+
+
+<div class="box2">
+
+<h2>
+ Download Notes
+</h2>
+
+<p>
+Save AI-generated summaries, explanations, and important research insights for future reference. Build your own personalized knowledge library.
+</p>
+
+</div>
+
+
+
+<div class="box2">
+
+<h2>
+ AI Quizzes
+</h2>
+
+<p>
+Turn passive reading into active learning with AI-generated quizzes designed from your research paper to strengthen understanding.
+</p>
+
+</div>
+
+
+
+
+<div class="box2">
+
+<h2>
+ Diagram Generation
+</h2>
+
+<p>
+Visualize complicated research concepts with AI-powered diagrams that simplify relationships, processes, and important ideas.
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<nav class="navbar">
+
+    <div class="nav-links">
+        <a href="test.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="About.html">About</a>
+        <a href="login.html">Login</a>
+        <a href="Notes.html">Notes</a>
+    </div>
+</nav>
+
+
+
+
+<script type="module" src="SCRIPT copy.js"></script>
+
+</body>
+
+</html>
