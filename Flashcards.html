@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Flashcard Generator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #172b4d;
+            background: #f4f7fc;
+        }
+
+        .navbar {
+            width: 100%;
+            padding: 20px;
+            background: white;
+            border-bottom: 1px solid #dce3ed;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #243b5a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #316bd8;
+        }
+
+        .hero {
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin-bottom: 15px;
+            font-size: 46px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #637089;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .generator-container {
+            width: min(900px, 92%);
+            margin: 20px auto 70px;
+            padding: 35px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(30, 55, 90, 0.12);
+        }
+
+        .upload-box {
+            padding: 40px 20px;
+            text-align: center;
+            background: #f7faff;
+            border: 2px dashed #8ba9d6;
+            border-radius: 14px;
+        }
+
+        .upload-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .upload-box p {
+            margin-bottom: 20px;
+            color: #68758c;
+        }
+
+        #pdfInput {
+            display: none;
+        }
+
+        .choose-button {
+            display: inline-block;
+            padding: 13px 24px;
+            color: white;
+            background: #316bd8;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #fileName {
+            margin-top: 18px;
+            color: #315eaa;
+            font-weight: bold;
+        }
+
+        #generateButton {
+            width: 100%;
+            margin-top: 22px;
+            padding: 15px;
+            border: none;
+            border-radius: 9px;
+            color: white;
+            background: #316bd8;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        #generateButton:disabled {
+            background: #9eabc0;
+            cursor: not-allowed;
+        }
+
+        #statusMessage {
+            display: none;
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 9px;
+            text-align: center;
+        }
+
+        .loading {
+            display: block !important;
+            color: #254f8d;
+            background: #e9f1ff;
+        }
+
+        .success {
+            display: block !important;
+            color: #246138;
+            background: #e9f8ee;
+        }
+
+        .error {
+            display: block !important;
+            color: #8a2828;
+            background: #ffeaea;
+        }
+
+        #flashcardsTitle {
+            display: none;
+            margin: 35px 0 20px;
+            text-align: center;
+        }
+
+        #flashcardsContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 20px;
+        }
+
+        .flashcard {
+            min-height: 230px;
+            padding: 28px;
+            border: 1px solid #d4dfef;
+            border-radius: 15px;
+            background: #f7faff;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .flashcard h3 {
+            margin-bottom: 20px;
+            color: #2458aa;
+        }
+
+        .flashcard .answer {
+            display: none;
+            color: #273a56;
+            line-height: 1.6;
+        }
+
+        .flashcard.flipped .question {
+            display: none;
+        }
+
+        .flashcard.flipped .answer {
+            display: block;
+        }
+
+        .hint {
+            margin-top: 22px;
+            color: #78859a;
+            font-size: 13px;
+        }
+
+        footer {
+            padding: 30px 20px;
+            color: white;
+            background: #172b4d;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 7px;
+        }
+
+        footer a {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="test.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="Flashcards.html">Flashcards</a>
+            <a href="About.html">About</a>
+            <a href="login.html">Login</a>
+            <a href="Notes.html">Notes</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>AI Flashcard Generator</h1>
+
+        <p>
+            Upload a research paper and generate five study flashcards
+            covering its main concepts, methods, findings, and conclusions.
+        </p>
+    </header>
+
+    <main class="generator-container">
+
+        <section class="upload-box">
+            <h2>Upload Your Research Paper</h2>
+
+            <p>Choose a PDF file to begin.</p>
+
+            <label for="pdfInput" class="choose-button">
+                Choose PDF
+            </label>
+
+            <input
+                type="file"
+                id="pdfInput"
+                accept="application/pdf"
+            >
+
+            <div id="fileName">
+                No PDF selected
+            </div>
+        </section>
+
+        <button id="generateButton" disabled>
+            Generate Flashcards
+        </button>
+
+        <div id="statusMessage"></div>
+
+        <h2 id="flashcardsTitle">
+            Your Study Flashcards
+        </h2>
+
+        <section id="flashcardsContainer"></section>
+
+    </main>
+
+    <footer>
+        <p><strong>AI Research Assistant</strong></p>
+
+        <p>Analyze papers. Discover insights. Learn smarter.</p>
+
+        <p>
+            <a href="PrivacyPolicy.html">Privacy Policy</a>
+        </p>
+
+        <p>© 2026 AI Research Assistant</p>
+    </footer>
+
+<script>
+    const pdfInput = document.getElementById("pdfInput");
+    const fileName = document.getElementById("fileName");
+    const generateButton = document.getElementById("generateButton");
+    const statusMessage = document.getElementById("statusMessage");
+    const flashcardsTitle = document.getElementById("flashcardsTitle");
+    const flashcardsContainer = document.getElementById("flashcardsContainer");
+
+    let selectedFile = null;
+
+    pdfInput.addEventListener("change", function () {
+        selectedFile = pdfInput.files[0];
+
+        if (!selectedFile) {
+            fileName.textContent = "No PDF selected";
+            generateButton.disabled = true;
+            return;
+        }
+
+        if (!selectedFile.name.toLowerCase().endsWith(".pdf")) {
+            alert("Please choose a PDF file.");
+            pdfInput.value = "";
+            selectedFile = null;
+            fileName.textContent = "No PDF selected";
+            generateButton.disabled = true;
+            return;
+        }
+
+        fileName.textContent = "Selected: " + selectedFile.name;
+        generateButton.disabled = false;
+    });
+
+    generateButton.addEventListener("click", generateFlashcards);
+
+    async function generateFlashcards() {
+        if (!selectedFile) {
+            showStatus("Please choose a PDF first.", "error");
+            return;
+        }
+
+        generateButton.disabled = true;
+        generateButton.textContent = "Generating...";
+
+        flashcardsContainer.innerHTML = "";
+        flashcardsTitle.style.display = "none";
+
+        showStatus(
+            "Reading your paper and generating flashcards...",
+            "loading"
+        );
+
+        const formData = new FormData();
+        formData.append("pdf", selectedFile);
+
+        try {
+            const response = await fetch(
+                "http://127.0.0.1:5000/flashcards",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok || data.status !== "success") {
+                throw new Error(
+                    data.message || "Flashcards could not be generated."
+                );
+            }
+
+            displayFlashcards(data.flashcards);
+
+            showStatus(
+                "Flashcards generated successfully. Click a card to reveal the answer.",
+                "success"
+            );
+        } catch (error) {
+            console.error(error);
+
+            showStatus(
+                error.message || "Could not connect to the backend.",
+                "error"
+            );
+        } finally {
+            generateButton.disabled = false;
+            generateButton.textContent = "Generate Flashcards";
+        }
+    }
+
+    function displayFlashcards(flashcards) {
+        flashcardsContainer.innerHTML = "";
+
+        flashcards.forEach(function (card, index) {
+            const flashcard = document.createElement("article");
+
+            flashcard.className = "flashcard";
+
+            flashcard.innerHTML = `
+                <h3>Flashcard ${index + 1}</h3>
+
+                <div class="question">
+                    <strong>Question:</strong>
+                    <br><br>
+                    ${escapeHtml(card.question)}
+                </div>
+
+                <div class="answer">
+                    <strong>Answer:</strong>
+                    <br><br>
+                    ${escapeHtml(card.answer)}
+                </div>
+
+                <div class="hint">
+                    Click to flip
+                </div>
+            `;
+
+            flashcard.addEventListener("click", function () {
+                flashcard.classList.toggle("flipped");
+            });
+
+            flashcardsContainer.appendChild(flashcard);
+        });
+
+        flashcardsTitle.style.display = "block";
+    }
+
+    function showStatus(message, type) {
+        statusMessage.textContent = message;
+        statusMessage.className = type;
+    }
+
+    function escapeHtml(value) {
+        return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+</script>
+
+</body>
+
+</html>

@@ -365,6 +365,177 @@ def queries():
 
 # @app.route("/signup")
 # def signup():
+@app.route("/flashcards", methods=["POST"])
+def generate_flashcards():
+    try:
+        if "pdf" not in request.files:
+            return {
+                "status": "error",
+                "message": "No PDF file was uploaded."
+            }, 400
+
+        pdf = request.files["pdf"]
+
+        if not pdf.filename.lower().endswith(".pdf"):
+            return {
+                "status": "error",
+                "message": "Please upload a PDF file."
+            }, 400
+
+        load_dotenv()
+        api_key = os.getenv("OPENROUTER_API_KEY")
+
+        if not api_key:
+            return {
+                "status": "error",
+                "message": "The OpenRouter API key is missing."
+            }, 500
+
+        pdf_bytes = pdf.read()
+        doc = pymupdf.open(stream=pdf_bytes, filetype="pdf")
+
+        paper_text = ""
+
+        for page in doc:
+            paper_text += page.get_text("text") + "\n"
+
+        doc.close()
+
+        paper_text = paper_text.strip()
+
+        if not paper_text:
+            return {
+                "status": "error",
+                "message": "No readable text was found in this PDF."
+            }, 400
+
+        # Limit the amount of text sent to the model.
+        paper_text = paper_text[:30000]
+
+        client = OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=api_key
+        )
+
+        response = client.chat.completions.create(
+            model="openrouter/free",
+            messages=[
+                {
+                    "role": "system",
+                    "content": """
+You create study flashcards from academic research papers.
+
+Create exactly 5 useful question-and-answer flashcards.
+
+Focus on:
+- the paper's main topic
+- important terminology
+- methods
+- major findings
+- conclusions or implications
+
+Use only information found in the supplied paper.
+Keep each answer clear and concise.
+Do not invent facts.
+
+Return ONLY valid JSON in this exact format:
+
+{
+  "flashcards": [
+    {
+      "question": "Question 1",
+      "answer": "Answer 1"
+    },
+    {
+      "question": "Question 2",
+      "answer": "Answer 2"
+    },
+    {
+      "question": "Question 3",
+      "answer": "Answer 3"
+    },
+    {
+      "question": "Question 4",
+      "answer": "Answer 4"
+    },
+    {
+      "question": "Question 5",
+      "answer": "Answer 5"
+    }
+  ]
+}
+"""
+                },
+                {
+                    "role": "user",
+                    "content": "Research paper:\n\n" + paper_text
+                }
+            ]
+        )
+
+        response_text = response.choices[0].message.content or ""
+        response_text = response_text.strip()
+
+        print("RAW AI RESPONSE:", response_text, flush=True)
+
+        response_text = response_text.replace("```json", "")
+        response_text = response_text.replace("```", "")
+        response_text = response_text.strip()
+
+        json_start = response_text.find("{")
+        json_end = response_text.rfind("}")
+
+        if json_start == -1 or json_end == -1:
+            raise ValueError("The AI response did not contain JSON.")
+
+        response_text = response_text[json_start:json_end + 1]
+
+        response_data = json.loads(response_text)
+
+        flashcards = response_data.get("flashcards", [])
+
+        valid_flashcards = []
+
+        for card in flashcards:
+            if not isinstance(card, dict):
+                continue
+
+            question = str(card.get("question", "")).strip()
+            answer = str(card.get("answer", "")).strip()
+
+            if question and answer:
+                valid_flashcards.append({
+                    "question": question,
+                    "answer": answer
+                })
+
+        flashcards = valid_flashcards
+
+        if len(flashcards) < 5:
+            return {
+            "status": "error",
+            "message": "The AI did not return 5 complete flashcards. Please generate them again."
+        }, 500
+
+        return {
+            "status": "success",
+            "flashcards": flashcards[:5]
+        }
+
+    except json.JSONDecodeError:
+        return {
+            "status": "error",
+            "message": "The AI returned an invalid response. Please try again."
+        }, 500
+
+    except Exception as error:
+        print("Flashcard generation error:", repr(error), flush=True)
+
+        return {
+            "status": "error",
+            "message": "Flashcard error: " + str(error)
+        }, 500
+
 @app.route("/followup", methods=["POST"])
 def followup():
 
@@ -387,11 +558,7 @@ def followup():
 
     response = client.chat.completions.create(
         model="openrouter/free",
-
-        response_format={
-            "type": "json_object"
-        },
-
+        response_format={"type": "json_object"},
         messages=[
             {
                 "role":"system",
